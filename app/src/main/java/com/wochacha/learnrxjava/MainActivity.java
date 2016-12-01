@@ -8,7 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.wochacha.learnrxjava.elementary_1.ElementaryFragment;
+import com.wochacha.learnrxjava.module.elementary_1.ElementaryFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

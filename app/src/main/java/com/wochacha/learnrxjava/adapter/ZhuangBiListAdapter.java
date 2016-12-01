@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.wochacha.learnrxjava.R;
-import com.wochacha.learnrxjava.module.ZhuangBiImage;
+import com.wochacha.learnrxjava.model.ZhuangBiImage;
 
 import java.util.List;
 

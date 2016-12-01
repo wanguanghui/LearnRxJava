@@ -1,4 +1,4 @@
-package com.wochacha.learnrxjava.module;
+package com.wochacha.learnrxjava.model;
 
 /**
  * Created by guanghui_wan on 2016/11/30.

@@ -1,6 +1,6 @@
 package com.wochacha.learnrxjava.network.api;
 
-import com.wochacha.learnrxjava.module.ZhuangBiImage;
+import com.wochacha.learnrxjava.model.ZhuangBiImage;
 
 import java.util.List;
 

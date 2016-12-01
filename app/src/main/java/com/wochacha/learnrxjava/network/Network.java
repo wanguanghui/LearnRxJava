@@ -1,5 +1,6 @@
 package com.wochacha.learnrxjava.network;
 
+import com.wochacha.learnrxjava.network.api.GankApi;
 import com.wochacha.learnrxjava.network.api.ZhuangBiApi;
 
 import okhttp3.OkHttpClient;
@@ -17,6 +18,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class Network {
 
     private static ZhuangBiApi zhuangBiApi;
+    private static GankApi gankApi;
     private static OkHttpClient okHttpClient = new OkHttpClient();
     private static Converter.Factory scalarsConverterFactory = ScalarsConverterFactory.create();
     private static Converter.Factory gsonConverterFactory = GsonConverterFactory.create();
@@ -34,6 +36,21 @@ public class Network {
             zhuangBiApi = retrofit.create(ZhuangBiApi.class);
         }
         return zhuangBiApi;
+    }
+
+    public static GankApi getGankApi(){
+
+        if (gankApi == null){
+            Retrofit retrofit = new Retrofit.Builder()
+                    .client(okHttpClient)
+                    .baseUrl("http://gank.io/api/")
+                    .addConverterFactory(scalarsConverterFactory)
+                    .addConverterFactory(gsonConverterFactory)
+                    .addCallAdapterFactory(rxJavaCallAdapterFactory)
+                    .build();
+            gankApi = retrofit.create(GankApi.class);
+        }
+        return gankApi;
     }
 
 }

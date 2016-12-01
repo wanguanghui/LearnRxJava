@@ -1,4 +1,4 @@
-package com.wochacha.learnrxjava.elementary_1;
+package com.wochacha.learnrxjava.module.elementary_1;
 
 
 import android.graphics.Color;
@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.wochacha.learnrxjava.BaseFragment;
 import com.wochacha.learnrxjava.R;
 import com.wochacha.learnrxjava.adapter.ZhuangBiListAdapter;
-import com.wochacha.learnrxjava.module.ZhuangBiImage;
+import com.wochacha.learnrxjava.model.ZhuangBiImage;
 import com.wochacha.learnrxjava.network.Network;
 
 import java.util.List;
@@ -109,6 +109,13 @@ public class ElementaryFragment extends BaseFragment {
     private void search(String key){
         subscription = Network.getZhuangBiApi()
                 .search(key)
+//                .map(new Func1<String, List<ZhuangBiImage>>() {
+//
+//                    @Override
+//                    public List<ZhuangBiImage> call(String s) {
+//                        return new Gson().fromJson(s,new TypeToken<List<ZhuangBiImage>>(){}.getType());
+//                    }
+//                })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
