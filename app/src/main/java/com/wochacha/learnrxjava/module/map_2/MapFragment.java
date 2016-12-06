@@ -15,11 +15,15 @@ import android.widget.TextView;
 
 import com.wochacha.learnrxjava.BaseFragment;
 import com.wochacha.learnrxjava.R;
+import com.wochacha.learnrxjava.model.Item;
 import com.wochacha.learnrxjava.network.Network;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -40,16 +44,38 @@ public class MapFragment extends BaseFragment {
         // Required empty public constructor
     }
 
+    Observer<List<Item>> observer = new Observer<List<Item>>() {
+        @Override
+        public void onCompleted() {
+
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            swipeRefreshLayout.setRefreshing(false);
+        }
+
+        @Override
+        public void onNext(List<Item> items) {
+            swipeRefreshLayout.setRefreshing(false);
+            tvPage.setText(getString(R.string.page_with_number,page));
+        }
+    };
+
     @OnClick(R.id.btn_previous_page)
     void previousPage(){
         loadPage(--page);
-//        tvPage.setText(getString());
-
+        if (page == 1){
+            btnPreviousPage.setEnabled(false);
+        }
     }
 
     @OnClick(R.id.btn_next_page)
     void nextPage(){
-
+        loadPage(++page);
+        if (page == 2){
+            btnPreviousPage.setEnabled(true);
+        }
     }
 
     private void loadPage(int page){
