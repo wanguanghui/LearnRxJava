@@ -11,4 +11,12 @@ import java.util.List;
 public class GankBeautyResult {
     public boolean error;
     public @SerializedName("results") List<GankBeauty> beauties;
+
+    @Override
+    public String toString() {
+        return "GankBeautyResult{" +
+                "error=" + error +
+                ", beauties=" + beauties +
+                '}';
+    }
 }

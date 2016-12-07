@@ -24,4 +24,12 @@ public class GankBeauty {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    @Override
+    public String toString() {
+        return "GankBeauty{" +
+                "createdAt='" + createdAt + '\'' +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }

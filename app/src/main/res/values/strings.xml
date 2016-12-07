@@ -10,7 +10,7 @@
     <string name="title_elementary">基本</string>
     <string name="title_map">转换(map)</string>
     <string name="title_zip">压合(zip)</string>
-    <string name="page_with_number">第%i页</string>
+    <string name="page_with_number">第%d页</string>
     <string name="next_page">下一页</string>
     <string name="previous_page">上一页</string>
     <string name="unknow_date">未知日期</string>

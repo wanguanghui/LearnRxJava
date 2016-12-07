@@ -3,6 +3,7 @@ package com.wochacha.learnrxjava.module.map_2;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatButton;
@@ -13,8 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.orhanobut.logger.Logger;
 import com.wochacha.learnrxjava.BaseFragment;
 import com.wochacha.learnrxjava.R;
+import com.wochacha.learnrxjava.adapter.ItemListAdapter;
 import com.wochacha.learnrxjava.model.Item;
 import com.wochacha.learnrxjava.network.Network;
 
@@ -39,6 +42,7 @@ public class MapFragment extends BaseFragment {
     @Bind(R.id.btn_next_page) AppCompatButton btnNextPage;
     @Bind(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
     @Bind(R.id.gridRv) RecyclerView rvMap;
+    private ItemListAdapter mAdapter = new ItemListAdapter();
 
     public MapFragment() {
         // Required empty public constructor
@@ -58,7 +62,10 @@ public class MapFragment extends BaseFragment {
         @Override
         public void onNext(List<Item> items) {
             swipeRefreshLayout.setRefreshing(false);
-            tvPage.setText(getString(R.string.page_with_number,page));
+            Logger.e(page+" ... "+items.toString());
+//            tvPage.setText(getString(R.string.page_with_number,page));
+            tvPage.setText(String.format(getString(R.string.page_with_number),page));
+            mAdapter.setItems(items);
         }
     };
 
@@ -83,10 +90,10 @@ public class MapFragment extends BaseFragment {
         unsubscribe();
         subscription = Network.getGankApi()
                 .getBeauties(10,page)
-//                .map()
+                .map(GankBeautyResultToItemsMapper.getInstance())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe();
+                .subscribe(observer);
     }
 
 
@@ -95,12 +102,16 @@ public class MapFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
         ButterKnife.bind(this,view);
+        return view;
+    }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         rvMap.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
-
+        rvMap.setAdapter(mAdapter);
         swipeRefreshLayout.setColorSchemeColors(Color.BLUE, Color.GREEN, Color.RED, Color.YELLOW);
         swipeRefreshLayout.setEnabled(false);
-        return view;
     }
 
     @Override

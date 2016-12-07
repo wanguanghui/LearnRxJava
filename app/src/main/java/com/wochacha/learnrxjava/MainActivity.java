@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.wochacha.learnrxjava.module.elementary_1.ElementaryFragment;
+import com.wochacha.learnrxjava.module.map_2.MapFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
                 switch (position){
                     case 0:
                         return new ElementaryFragment();
+                    case 1:
+                        return new MapFragment();
                     default:
                         return null;
                 }
@@ -40,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public int getCount() {
-                return 1;
+                return 2;
             }
 
             @Override
@@ -48,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
                 switch (position){
                     case 0:
                         return "基本";
+                    case 1:
+                        return "转换";
                     default:
                         return "基本";
                 }
