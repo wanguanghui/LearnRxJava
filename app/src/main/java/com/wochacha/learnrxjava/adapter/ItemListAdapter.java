@@ -34,7 +34,7 @@ public class ItemListAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         MapViewHolder mapViewHolder = (MapViewHolder) holder;
         Item image = images.get(position);
-        Glide.with(holder.itemView.getContext()).load(image.getImageUrl()).into(mapViewHolder.ivImage);
+        Glide.with(holder.itemView.getContext()).load(image.getImageUrl()).thumbnail(0.1f).into(mapViewHolder.ivImage);
         mapViewHolder.tvDesc.setText(image.getDescription());
     }
 

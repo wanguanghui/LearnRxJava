@@ -112,6 +112,7 @@ public class MapFragment extends BaseFragment {
         rvMap.setAdapter(mAdapter);
         swipeRefreshLayout.setColorSchemeColors(Color.BLUE, Color.GREEN, Color.RED, Color.YELLOW);
         swipeRefreshLayout.setEnabled(false);
+        btnNextPage.performClick();
     }
 
     @Override
