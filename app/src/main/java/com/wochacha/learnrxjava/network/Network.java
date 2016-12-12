@@ -1,5 +1,6 @@
 package com.wochacha.learnrxjava.network;
 
+import com.wochacha.learnrxjava.network.api.FakeApi;
 import com.wochacha.learnrxjava.network.api.GankApi;
 import com.wochacha.learnrxjava.network.api.ZhuangBiApi;
 
@@ -19,6 +20,7 @@ public class Network {
 
     private static ZhuangBiApi zhuangBiApi;
     private static GankApi gankApi;
+    private static FakeApi fakeApi;
     private static OkHttpClient okHttpClient = new OkHttpClient();
     private static Converter.Factory scalarsConverterFactory = ScalarsConverterFactory.create();
     private static Converter.Factory gsonConverterFactory = GsonConverterFactory.create();
@@ -51,6 +53,13 @@ public class Network {
             gankApi = retrofit.create(GankApi.class);
         }
         return gankApi;
+    }
+
+    public static FakeApi getFakeApi(){
+        if (fakeApi == null){
+            fakeApi = new FakeApi();
+        }
+        return fakeApi;
     }
 
 }

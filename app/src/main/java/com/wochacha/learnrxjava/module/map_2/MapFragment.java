@@ -27,6 +27,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.Observer;
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -68,6 +69,27 @@ public class MapFragment extends BaseFragment {
             mAdapter.setItems(items);
         }
     };
+
+    Subscriber<List<Item>> subscriber = new Subscriber<List<Item>>() {
+        @Override
+        public void onCompleted() {
+
+        }
+
+        @Override
+        public void onError(Throwable e) {
+
+        }
+
+        @Override
+        public void onNext(List<Item> items) {
+
+        }
+    };
+
+    public rx.Observable<String> getI(){
+        return rx.Observable.just("a","b");
+    }
 
     @OnClick(R.id.btn_previous_page)
     void previousPage(){

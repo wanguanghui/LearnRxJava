@@ -1,0 +1,27 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.wochacha.learnrxjava.module.token_4.TokenFragment">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <TextView
+            android:id="@+id/tv_token"
+            android:layout_width="match_parent"
+            android:background="#1333"
+            android:layout_height="match_parent" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <Button
+        android:id="@+id/btn_request"
+        android:layout_width="match_parent"
+        android:text="请求数据"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
